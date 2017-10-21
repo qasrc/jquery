@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单测试</title>
+    <script type="text/javascript" src="resource/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            //-------------表单对象属性过滤器
+            //更改不可用input标签的值
+            //$("input:disabled").val("变化啦");
+            //更改可用的input标签的值
+            //$("input:enabled").val("变化啦");
+            //
+
+        });
+
+        function test1() {
+            //获取已选中的复选框的值
+            var values = $("input[type=checkbox]:checked").length;
+            alert(values);
+        }
+
+
+        function test2() {
+            //获取已选中的单选框的值
+            var values = $("input[name=radioTest]:checked").val();
+            alert(values);
+        }
+
+
+        function test3() {
+            //获取下拉列表中已选中的值
+            var values = $("select[name=grade] option:selected").val();
+            alert(values);
+        }
+
+    </script>
+</head>
+<body>
+    <form action="#" id="myForm">
+        <input type="text" value="可用文本框" /><br>
+        <input type="text" disabled="disabled" value="不可用文本框" /><br>
+        <input type="text" value="可用文本框" /><br>
+        <input type="text" disabled="disabled" value="不可用文本框" /><br>
+        test1<input type="checkbox" value="1" name="test">
+        test2 <input type="checkbox" value="2" name="test">
+        test3 <input type="checkbox" value="3" name="test">
+        <br>
+        radio1 <input type="radio" value="1" name="radioTest">
+        radio2 <input type="radio" value="2" name="radioTest">
+        radio3 <input type="radio" value="3" name="radioTest">
+        <br>
+        <select id="selectTest" name="grade">
+            <option selected="selected" value="一年级1">一年级</option>
+            <option value="二年级1">二年级</option>
+            <option value="三年级1">三年级</option>
+        </select>
+        <input type="button" value="点击测试" onclick="test1()">
+        <input type="button" value="测试单选" onclick="test2()">
+        <input type="button" value="下拉测试" onclick="test3()">
+
+    </form>
+
+</body>
+</html>

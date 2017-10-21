@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery测试</title>
+    <script type="text/javascript" src="resource/jquery-3.2.1.min.js"></script>
+    <link type="text/css" href="Test.css" rel="stylesheet">
+</head>
+<script>
+    $(function () {
+       change();
+    });
+
+    /*
+    基本选择器，
+     */
+    function change() {
+
+        var obj = $("#one");
+        //JQuery转换成DOM对象
+        var domObj = obj[0];
+
+        if($("#one").length>0){
+            //do something
+        }
+
+        if($("#one")[0]){
+            //do something
+        }
+
+        var object = document.getElementById("one");
+        //DOM转换成JQuery对象
+        var jQueryObj = $(object);
+
+
+        //$("#one").css('background', '#bbffaa');
+        //$(".mini").css('background', '#bbffaa');
+        //$("*").css('background', '#bbffaa');
+
+        //---------------基本过滤选择器
+        //$("div:even").css('background','#fff')
+        //改变第一个div元素的背景色
+        //$("div:first").css('background', '#fff');
+        //改变最后一个div元素的背景色
+        //$("div:last").css('background', '#fff');
+        //改变索引为奇数的div背景色
+        //$("div:odd").css('background', '#fff');
+        //改变索引为偶数的class为mini的背景色
+        //$(".mini:even").css('background', '#fff');
+        //改变索引小于3的class为mini的背景色，索引从0开始
+        //$(".mini:lt(3)").css('background', '#fff');
+        //改变class不为one的div的背景色
+        //$("div:not(.one)").css('background', '#fff');
+
+        //--------------内容过滤选择器
+        //更改包含type文本的背景色
+        //$("div:contains(type)").css('background', '#fff');
+        //更改不包含子元素的div的背景色
+        //$("div:empty").css('background', '#fff');
+        //选取含有选择器匹配元素的元素
+        //$("div:has(.mini)").css('background', '#fff');
+        //选取含有子元素或文本的元素
+        //$("div:parent").css('background', '#fff');
+        //-------可见性过滤选择器
+        //更改所有可以div的背景色
+        //$("div:visible").css('background', '#fff');
+        //显示隐藏的div
+        //$("div:hidden").show(2000);
+
+        //-----属性过滤选择器
+        //更改含有title的div的背景色
+        //$("div[title]").css('background', '#fff');
+        //更改title为test的div的背景色
+        //$("div[title=test]").css('background', '#fff');
+        //更改title不等于test的div的背景色
+        //$("div[title!=test]").css('background', '#fff');
+        //更改title以an结束的div的背景色
+        //$("div[title$=an]").css('background', '#fff');
+        //更改title以zh开始的div的背景色
+        //$("div[title^=zh]").css('background', '#fff');
+        //更改title中含有a 的div的背景色
+        //$("div[title*=a]").css('background', '#fff');
+
+
+        //--------------子元素过滤选择器
+        //更改class为one的div父元素中索引值为奇数的子元素的背景色
+        //索引是从1开始
+        $(".one :nth-child(odd)").css('background', '#fff');
+
+
+    }
+
+</script>
+<body>
+<div class="one" id="one">
+    id为one,class为one的div
+    <div class="mini">class为mini</div>
+</div>
+<div class="one" id="two" title="test">
+    id为two,class为one,title为test的div
+    <div class="mini" title="other">class为mini,title为other</div>
+    <div class="mini" title="test">class为mini,title为test</div>
+</div>
+<div class="one" title="zhang">
+    <div class="mini">class为mini</div>
+    <div class="mini">class为mini</div>
+    <div class="mini">class为mini</div>
+    <div class="mini">
+    </div>
+</div>
+<div class="one" title="zhan">
+    <div class="mini">class为mini</div>
+    <div class="mini">class为mini</div>
+    <div class="mini">class为mini</div>
+    <div class="mini" title="tesst">class为mini,title为tesst</div>
+</div>
+<div style="display: none;" class="none">
+    style的display为none的div
+</div>
+<div class="hide">class为hide的div</div>
+<div>包含input的type为hidden的div <input type="hidden" size="8"></div>
+<div></div>
+<span id="mover">正在执行动画的span元素</span>
+
+</body>
+</html>

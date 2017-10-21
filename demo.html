@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="resource/jquery-3.2.1.min.js"></script>
+
+    <title>Title</title>
+    <style>
+        a{
+            border: 1px;
+
+        }
+        .showmore{
+            text-align: center;
+
+        }
+        li{
+            width: 33%;
+            float: left;
+        }
+    </style>
+    <script>
+        var nodes;
+        $(function () {
+            nodes = $("ul li:gt(5):not(:last)").hide();
+            var toggleBtn = $("div.showmore>a");
+            toggleBtn.click(function () {
+                if(nodes.is(':visible')){
+                    nodes.hide();
+                    $(this).find('span').css('color','black').text('显示全部品牌');
+                    $("ul li").filter(":contains('佳能'),:contains('尼康')").css('background-color', 'white');
+                }else{
+                    nodes.show();
+                    //获取span标签
+                    $(this).find('span').css('color','red').text('显示精简品牌');
+                    $("ul li").filter(":contains('佳能'),:contains('尼康')").css('background-color', 'grey');
+                }
+
+                return false;
+            });
+
+
+        })
+
+
+
+
+    </script>
+</head>
+<body>
+<div class="SubBox">
+    <ul>
+        <li><a href="#">佳能</a><i>(30440)</i></li>
+        <li><a href="#">索尼</a><i>(234223)</i></li>
+        <li><a href="#">三星</a><i>(342324)</i></li>
+        <li><a href="#">尼康</a><i>(23123)</i></li>
+        <li><a href="#">松下</a><i>(231232)</i></li>
+        <li><a href="#">卡西欧</a><i>(4562324)</i></li>
+        <li><a href="#">富士</a><i>(234454)</i></li>
+        <li><a href="#">柯达</a><i>(211232)</i></li>
+        <li><a href="#">宾得</a><i>(231232)</i></li>
+        <li><a href="#">理光</a><i>(241232)</i></li>
+        <li><a href="#">巴斯</a><i>(134323)</i></li>
+        <li><a href="#">明基</a><i>(423423)</i></li>
+        <li><a href="#">爱国者</a><i>(523433)</i></li>
+        <li><a href="#">其他品牌相机</a><i>(34534453)</i></li>
+    </ul>
+    <div class="showmore">
+        <a href="more.html"><span>显示全部品牌</span></a>
+
+    </div>
+</div>
+</body>
+</html>

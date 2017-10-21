@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="resource/jquery-3.2.1.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .a{
+            color: red;
+            font-weight: 100;
+        }
+
+        .b{
+            color: blue;
+            font-weight: 200;
+            font-style: inherit;
+        }
+
+
+    </style>
+    <script>
+        $(function () {
+            //查找元素节点
+            //var txt = $("ul li:eq(1)").text();
+            //alert(txt);
+
+
+            //查看属性节点
+            //获取元素后可以用attr()方法获取属性
+            var p = $("p");
+            var p_txt = p.attr('title');
+            //alert(p_txt);
+
+            cloneNode();
+        });
+
+        //创建节点
+        function newNode() {
+            var li_1 = $("<li title='a'>香蕉</li>");
+            var li_2 = $("<li title='b'>梨</li>");
+            $("ul").append(li_1).append(li_2);
+        }
+
+        //在不同位置添加节点
+        function newDiffNode() {
+            var li_1 = $("<li title='a'>香蕉</li>");
+            var li_2 = $("<li title='b'>梨</li>");
+            var li_3 = $("<li title='c'>其它</li>");
+            var parent = $("ul");
+            var two = $("ul li:eq(1)");
+            //添加到父元素的最后面
+            parent.append(li_1);
+            //添加到父元素的最前面
+            parent.prepend(li_2);
+            //添加以第二个元素的前面
+            li_3.insertBefore(two);
+        }
+
+        //对原有节点重新排序
+        function order() {
+            //获取第一个节点
+            var li_1 = $("ul li:eq(0)");
+            //获取第三个节点
+            var li_2 = $("ul li:eq(2)");
+            li_2.insertBefore(li_1);
+        }
+
+        var deleteNode='';
+        //删除一个节点,绑定的事件会删除
+        function delNode() {
+            deleteNode = $("ul li:eq(1)").remove();
+            $("#addDelBtn").removeAttr('disabled');
+        }
+
+        //使用detach删除节点，会保留绑定的事件
+        function delNodeDetach() {
+            deleteNode = $("ul li:eq(1)").detach();
+            $("#addDelBtn").removeAttr('disabled');
+        }
+
+        function addDelNode() {
+            $("ul li:eq(0)").after(deleteNode);
+            $("#addDelBtn").attr('disabled', 'disabled');
+        }
+
+        //清空节点，会清空后代所有的元素
+        function emptyNode() {
+            $("ul li:eq(1)").empty();
+        }
+
+        //复制节点
+        function cloneNode() {
+            $("ul li").click(function () {
+                $(this).clone(true).appendTo('ul');
+            });
+        }
+
+        /*
+        替换节点：
+        1.使用replaceWith()或是replaceAll()方法进行替换。
+        2.两个方法正好的反向的操作
+        3.替换后所原元素绑定的事件也会消失
+         */
+        function replaceNode() {
+            $("p").replaceWith('<strong>你最不喜欢的水果是？</strong>')
+        }
+
+        //包裹节点
+        function wrap() {
+            //用strong标签把p标签包裹起来
+            $("p").wrap("<strong></strong>")
+        }
+
+        function wrapAll() {
+            $("p").wrapAll("<strong></strong>");
+        }
+
+        function wrapInner() {
+            //strong标签将包裹p标签的子标签
+            $("p").wrapInner("<strong></strong>");
+        }
+
+        //获取和设置属性，使用attr()方法
+        function getAttr() {
+            //获取p标签的属性，默认获取的是匹配的第一个元素
+            var titles = $("p").attr('title');
+            alert(titles);
+        }
+
+        //设置属性
+        function setAttr() {
+            //设置所有匹配的节点
+            $("p").attr('title', '已设置的title');
+        }
+
+        //删除属性
+        function removeAttr() {
+            $("p").removeAttr('title');
+        }
+
+        //获取Class属性
+        function getClass() {
+            var clazz = $("p").attr('class');
+            alert(clazz);
+        }
+
+        //设置class属性
+        function setClass() {
+            $("p").attr('class', 'a');
+        }
+
+        //追加属性
+        function addClass() {
+            $("p").addClass('b');
+        }
+
+        //移除样式
+        function removeClass() {
+            //$("p").removeAttr('class');
+            $("p").removeClass('a');
+        }
+
+        //样式切换
+        function toggleClass() {
+            $("p").toggleClass('b');
+        }
+
+
+    </script>
+</head>
+<body>
+<p class="a" title="选择你最喜欢的水果1">你最喜欢的水果是？</p>
+<p title="选择你最喜欢的水果2">你最喜欢的水果是？</p>
+
+<ul>
+    <li>苹果</li>
+    <li>橘子</li>
+    <li>菠萝</li>
+</ul>
+<button onclick="newNode()">创建新节点</button>
+<button onclick="newDiffNode()">添加节点到不同位置</button>
+<button onclick="order()">对节点重新排序</button>
+<hr>
+<button onclick="delNode()" id="delBtn">删除一个节点</button>
+<button onclick="delNodeDetach()">使用detach删除节点</button>
+<button onclick="addDelNode()" id="addDelBtn" disabled="disabled">添加删除的节点</button>
+<button onclick="emptyNode()">清空节点</button>
+<hr>
+<button onclick="replaceNode()">替换节点</button>
+<hr>
+<button onclick="wrap()">使用wrap包裹节点</button>
+<button onclick="wrapAll()">使用wrapAll包裹节点</button>
+<button onclick="wrapInner()">使用wrapInner包裹节点</button>
+<hr>
+<button onclick="getAttr()">获取属性</button>
+<button onclick="setAttr()">设置属性</button>
+<button onclick="removeAttr()">移除属性</button>
+<hr>
+<button onclick="getClass()">获取属性</button>
+<button onclick="setClass()">设置属性</button>
+<button onclick="addClass()">追加属性</button>
+<button onclick="removeClass()">移除样式</button>
+<button onclick="toggleClass()">切换样式</button>
+</body>
+</html>
